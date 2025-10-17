@@ -985,8 +985,9 @@ def handle_contract_address_or_tx(message):
         print(f"DEBUG: Skipping handle_contract_address_or_tx for user {chat_id} - they are in withdrawal_amount_waiting")
         return
 
-    # Handle deposit TX hash confirmation
+    # Import required functions
     from checkbalance import get_incomplete_orders
+    from bot_interations import send_payment_verification_to_group
     import time
     incomplete_orders = get_incomplete_orders(chat_id)
     if incomplete_orders and is_valid_tx_hash(message.text.strip()):
@@ -997,7 +998,6 @@ def handle_contract_address_or_tx(message):
         
         # Send to admin group for verification instead of auto-confirming
         user = message.from_user.username or message.from_user.id
-        from bot_interations import send_payment_verification_to_group
         send_payment_verification_to_group(user, f"{amount:.4f} SOL", "Deposit", tx_hash, user_chat_id=chat_id)
         
         # Remove the incomplete order since it's now pending admin approval
