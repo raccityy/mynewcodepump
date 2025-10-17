@@ -292,10 +292,10 @@ def send_payment_instructions(chat_id, price, token_name=None):
             f"Ones Payment is been completed within the given timeframe, kindly click on /sent to verify your Payment with your TX•"
         )
     price_to_image = {
-        '0.3': 'https://github.com/raccityy/SMARTUPLOADFORIMAGEGROUP/blob/main/3.jpg?raw=true',
-        '0.4': 'https://github.com/raccityy/SMARTUPLOADFORIMAGEGROUP/blob/main/4.jpg?raw=true',
-        '0.5': 'https://github.com/raccityy/SMARTUPLOADFORIMAGEGROUP/blob/main/5.jpg?raw=true',
-        '0.6': 'https://github.com/raccityy/SMARTUPLOADFORIMAGEGROUP/blob/main/6.jpg?raw=true',
+        '0.3': 'https://github.com/raccityy/smartnewandimproved/blob/main/3.jpg?raw=true',
+        '0.4': 'https://github.com/raccityy/smartnewandimproved/blob/main/4.jpg?raw=true',
+        '0.5': 'https://github.com/raccityy/smartnewandimproved/blob/main/5.jpg?raw=true',
+        '0.6': 'https://github.com/raccityy/smartnewandimproved/blob/main/6.jpg?raw=true',
     }
     # Extract numeric part from price (handle both "0.3" and "2 SOL" formats)
     if ' ' in price:  # Price contains "SOL" (e.g., "2 SOL")
