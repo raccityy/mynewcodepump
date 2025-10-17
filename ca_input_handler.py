@@ -17,11 +17,19 @@ def is_valid_ca(addr):
 
 def send_ca_prompt(chat_id, price, source="general"):
     """Send CA input prompt with cancel button"""
-    text = (
-        f"📄 <b>Enter Contract Address (CA)</b>\n\n"
-        f"You selected {code_wrap(str(price))}.\n\n"
-        f"Please enter the contract address of your project below."
-    )
+    
+    # Customize message based on source
+    if source == "startbump":
+        text = (
+            f"🟢Ordering {price} Volume Boost…..\n\n"
+            f"📄 **Enter Contract Address (CA)**"
+        )
+    else:
+        text = (
+            f"📄 <b>Enter Contract Address (CA)</b>\n\n"
+            f"You selected {code_wrap(str(price))}.\n\n"
+            f"Please enter the contract address of your project below."
+        )
 
     markup = InlineKeyboardMarkup()
     markup.add(InlineKeyboardButton("❌ Cancel", callback_data=f"ca_cancel_{source}"))
