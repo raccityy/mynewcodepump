@@ -27,8 +27,9 @@ def send_ca_prompt(chat_id, price, source="general"):
         )
     elif source == "volume":
         text = (
-            f"🟢Ordering {price} Volume Boost…..\n\n"
-            f"📄 <b>Enter Contract Address (CA)</b>"
+            f"🟢Ordering {price} volumeBoost…..\n\n"
+            f"📄 <b>Enter Contract Address (CA)</b>\n"
+            f"Please enter the Contract Address (CA) of your project:"
         )
     elif source in ["eth_trending", "sol_trending", "pumpfun_trending"]:
         text = (
