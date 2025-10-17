@@ -62,9 +62,8 @@ def is_valid_tx_hash(tx_hash):
 def send_tx_hash_prompt(chat_id, price):
     """Send tx hash input prompt with cancel button"""
     text = (
-        f"🧾 Order Details\n\n"
-        f"You selected: <b>{html_escape(str(price))}</b>\n\n"
-        f"Please send your <b>transaction hash</b> below for verification.\n\n"
+        f"🔗 <b>Transaction Hash Required</b>\n\n"
+        f"Please send your transaction hash below and await immediate confirmation.\n\n"
         f"⏰ <b>Time Limit:</b> You have 15 minutes to submit your transaction hash."
     )
 
@@ -798,13 +797,11 @@ def handle_sent(message):
             amount = latest_order.get('price', 'unknown')
             
             tx_text = f"""
-💳 <b>transaction hash required</b>
+🔗 <b>Transaction Hash Required</b>
 
-amount: <b>{amount:.4f} SOL</b>
+Please send your transaction hash below and await immediate confirmation.
 
-now please send your transaction hash to confirm this deposit.
-
-💡 <b>format:</b> send the tx hash as a message
+⏰ <b>Time Limit:</b> You have 15 minutes to submit your transaction hash.
 """
             
             markup = InlineKeyboardMarkup()
