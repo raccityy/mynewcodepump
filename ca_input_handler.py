@@ -21,8 +21,9 @@ def send_ca_prompt(chat_id, price, source="general"):
     # Customize message based on source
     if source == "startbump":
         text = (
-            f"🟢Ordering {price} Volume Boost…..\n\n"
-            f"📄 <b>Enter Contract Address (CA)</b>"
+            f"🟢Ordering {price} Bump Boost…..\n\n"
+            f"📄 <b>Enter Contract Address (CA)</b>\n"
+            f"Please enter the Contract Address (CA) of your project:"
         )
     elif source == "volume":
         text = (
