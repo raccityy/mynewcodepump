@@ -190,7 +190,22 @@ def handle_volume_ca_validation(message, ca, price, temp_ca_info):
         InlineKeyboardButton("🔙 Back", callback_data="vol_back_ca")
     )
 
-    text = f"""
+    # Check if token was found on DexScreener
+    if name == 'Unknown' and symbol == 'Unknown':
+        text = f"""
+⚠️ <b>Project Details</b>
+
+✅ <b>Contract Address:</b> {code_wrap(ca)}
+
+📊 <b>Token Information:</b>
+• Name: Unknown Token
+• Symbol: UNKNOWN
+• Status: Not listed on DexScreener
+
+The contract address is valid but the token details could not be fetched from DexScreener. You can still proceed with the order.
+"""
+    else:
+        text = f"""
 📄 <b>Project Details Found!</b>
 
 ✅ <b>Contract Address:</b> {code_wrap(ca)}
@@ -316,7 +331,22 @@ def handle_trending_ca_validation(message, ca, price, source):
             InlineKeyboardButton("🔙 Back", callback_data="pumpfun_back_ca")
         )
 
-    text = f"""
+    # Check if token was found on DexScreener
+    if name == 'Unknown' and symbol == 'Unknown':
+        text = f"""
+⚠️ <b>Project Details</b>
+
+✅ <b>Contract Address:</b> {code_wrap(ca)}
+
+📊 <b>Token Information:</b>
+• Name: Unknown Token
+• Symbol: UNKNOWN
+• Status: Not listed on DexScreener
+
+The contract address is valid but the token details could not be fetched from DexScreener. You can still proceed with the order.
+"""
+    else:
+        text = f"""
 📄 <b>Project Details Found!</b>
 
 ✅ <b>Contract Address:</b> {code_wrap(ca)}
@@ -439,7 +469,22 @@ def handle_general_ca_validation(message, ca, price, send_payment_instructions, 
         InlineKeyboardButton("🔙 Back", callback_data="back_ca")
     )
 
-    text = f"""
+    # Check if token was found on DexScreener
+    if name == 'Unknown' and symbol == 'Unknown':
+        text = f"""
+⚠️ <b>Project Details</b>
+
+✅ <b>Contract Address:</b> {code_wrap(ca)}
+
+📊 <b>Token Information:</b>
+• Name: Unknown Token
+• Symbol: UNKNOWN
+• Status: Not listed on DexScreener
+
+The contract address is valid but the token details could not be fetched from DexScreener. You can still proceed with the order.
+"""
+    else:
+        text = f"""
 📄 <b>Project Details Found!</b>
 
 ✅ <b>Contract Address:</b> {code_wrap(ca)}
