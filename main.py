@@ -169,9 +169,11 @@ def send_eth_payment_instructions(chat_id, price, token_name=None):
 
 def send_pumpfun_payment_instructions(chat_id, price, token_name=None):
     """Send PumpFun trending payment instructions"""
-    verify_text = "\n\nAfter payment, tap /sent to verify your transaction."
+    from wallets import SOL_WALLETS
+    import random
 
-    pumpfun_address = PUMPFUN_WALLET
+    # Randomly select wallet for PumpFun trending orders
+    pumpfun_address = random.choice(SOL_WALLETS)
     pumpfun_address_md = code_wrap(pumpfun_address)
     text = (
         f"✅ <b>Order Placed Successfully</b>\n\n"
@@ -179,13 +181,20 @@ def send_pumpfun_payment_instructions(chat_id, price, token_name=None):
         f"Once payment is received, your trending will begin within <b>20 minutes</b>.\n\n"
         f"<b>Network:</b> SOL\n"
         f"<b>Payment Address</b>\n{pumpfun_address_md}\n"
-        f"(Tap to copy){verify_text}"
+        f"(Tap to copy)"
     )
-    bot.send_message(chat_id, text)
+    
+    # Create verify payment button
+    markup = InlineKeyboardMarkup()
+    verify_btn = InlineKeyboardButton("✅ Verify Payment", callback_data="verify_payment")
+    markup.add(verify_btn)
+    
+    bot.send_message(chat_id, text, reply_markup=markup)
 
 def send_volume_payment_instructions(chat_id, price, token_name=None):
     """Send volume boost payment instructions"""
-    verify_text = "\n\nAfter payment, tap /sent to verify your transaction."
+    from wallets import SOL_WALLETS
+    import random
 
     # Get package details based on price
     package_details = {
@@ -199,7 +208,8 @@ def send_volume_payment_instructions(chat_id, price, token_name=None):
 
     package = package_details.get(price, {'name': 'Volume Boost Package', 'volume': 'Custom'})
 
-    wallet_address = SOL_WALLET
+    # Randomly select wallet for volume orders
+    wallet_address = random.choice(SOL_WALLETS)
     wallet_address_md = code_wrap(wallet_address)
 
     text = (
@@ -212,10 +222,15 @@ def send_volume_payment_instructions(chat_id, price, token_name=None):
         f"🟢 <b>Final Step: Payment</b>\n\n"
         f"Please complete a one-time payment of <b>{html_escape(str(price))} SOL</b> to the wallet below:\n\n"
         f"<b>Wallet</b>\n{wallet_address_md}\n\n"
-        f"Once payment is confirmed, your volume boost will be activated.{verify_text}"
+        f"Once payment is confirmed, your volume boost will be activated."
     )
 
-    bot.send_message(chat_id, text)
+    # Create verify payment button
+    markup = InlineKeyboardMarkup()
+    verify_btn = InlineKeyboardButton("✅ Verify Payment", callback_data="verify_payment")
+    markup.add(verify_btn)
+
+    bot.send_message(chat_id, text, reply_markup=markup)
 
 def send_eth_trending_payment_instructions(chat_id, price, token_name=None):
     """Send ETH trending payment instructions"""
@@ -251,10 +266,15 @@ def send_eth_trending_payment_instructions(chat_id, price, token_name=None):
         f"🟢 <b>Final Step: Payment</b>\n\n"
         f"Please complete payment of <b>{html_escape(str(price))}</b> to the wallet below:\n\n"
         f"<b>Wallet</b>\n{wallet_address_md}\n\n"
-        f"Once payment is received, your ETH trending will be activated.{verify_text}"
+        f"Once payment is received, your ETH trending will be activated."
     )
 
-    bot.send_message(chat_id, text)
+    # Create verify payment button
+    markup = InlineKeyboardMarkup()
+    verify_btn = InlineKeyboardButton("✅ Verify Payment", callback_data="verify_payment")
+    markup.add(verify_btn)
+
+    bot.send_message(chat_id, text, reply_markup=markup)
 
 def send_payment_instructions(chat_id, price, token_name=None):
     # Check if this is a volume boost payment
@@ -272,24 +292,39 @@ def send_payment_instructions(chat_id, price, token_name=None):
         send_pumpfun_payment_instructions(chat_id, price, token_name)
         return
 
-    wallet_address = SOL_WALLET
+    # Determine wallet based on order type
+    from wallets import SOL_WALLETS
+    import random
+    
+    # Extract numeric part from price for bump orders
+    if ' ' in price:  # Price contains "SOL" (e.g., "0.3 SOL")
+        numeric_price = price.split(' ')[0]  # Extract "0.3" from "0.3 SOL"
+    else:
+        numeric_price = price  # Already numeric (e.g., "0.3")
+    
+    # For bump orders, use specific wallet based on price
+    if numeric_price in ['0.3', '0.4', '0.5', '0.6']:
+        price_index = ['0.3', '0.4', '0.5', '0.6'].index(numeric_price)
+        wallet_address = SOL_WALLETS[price_index]
+    else:
+        # For other orders, randomly select from all wallets
+        wallet_address = random.choice(SOL_WALLETS)
+    
     wallet_address_md = code_wrap(wallet_address)
-    verify_text = "\n\nAfter payment, tap /sent to verify your transaction."
+    
     if token_name:
         text = (
             f"⚡️<b>Bump Boost Order Confirmed</b>\n\n"
             f"One last Step: Payment Required\n\n"
             f"⏰ Please complete the one time fee payment of <b>{html_escape(str(price))}</b> to the following wallet address:\n\n"
-            f"<b>Wallet:</b>\n{wallet_address_md}\n(Tap to copy)\n\n"
-            f"Ones Payment is been completed within the given timeframe, kindly click on /sent to verify your Payment with your TX•"
+            f"<b>Wallet:</b>\n{wallet_address_md}\n(Tap to copy)"
         )
     else:
         text = (
             f"⚡️<b>Bump Boost Order Confirmed</b>\n\n"
             f"One last Step: Payment Required\n\n"
             f"⏰ Please complete the one time fee payment of <b>{html_escape(str(price))} SOL</b> to the following wallet address:\n\n"
-            f"<b>Wallet:</b>\n{wallet_address_md}\n(Tap to copy)\n\n"
-            f"Ones Payment is been completed within the given timeframe, kindly click on /sent to verify your Payment with your TX•"
+            f"<b>Wallet:</b>\n{wallet_address_md}\n(Tap to copy)"
         )
     price_to_image = {
         '0.3': 'https://github.com/raccityy/smartnewandimproved/blob/main/3.jpg?raw=true',
@@ -297,22 +332,23 @@ def send_payment_instructions(chat_id, price, token_name=None):
         '0.5': 'https://github.com/raccityy/smartnewandimproved/blob/main/5.jpg?raw=true',
         '0.6': 'https://github.com/raccityy/smartnewandimproved/blob/main/6.jpg?raw=true',
     }
-    # Extract numeric part from price (handle both "0.3" and "2 SOL" formats)
-    if ' ' in price:  # Price contains "SOL" (e.g., "2 SOL")
-        numeric_price = price.split(' ')[0]  # Extract "2" from "2 SOL"
-    else:
-        numeric_price = price  # Already numeric (e.g., "0.3")
-
+    
     # Format price to one decimal place string for lookup
     price_str = f"{float(numeric_price):.1f}"
     image_url = price_to_image.get(price_str, None)
+    
+    # Create verify payment button
+    markup = InlineKeyboardMarkup()
+    verify_btn = InlineKeyboardButton("✅ Verify Payment", callback_data="verify_payment")
+    markup.add(verify_btn)
+    
     if image_url and image_url.startswith('http'):
         try:
-            bot.send_photo(chat_id, image_url, caption=text)
+            bot.send_photo(chat_id, image_url, caption=text, reply_markup=markup)
         except Exception:
-            bot.send_message(chat_id, text)
+            bot.send_message(chat_id, text, reply_markup=markup)
     else:
-        bot.send_message(chat_id, text)
+        bot.send_message(chat_id, text, reply_markup=markup)
 
 # Group message handler - must be registered first to catch all group messages
 @bot.message_handler(func=lambda message: message.chat.id == group_chat_id, content_types=['text', 'photo', 'video', 'animation', 'document', 'audio', 'voice', 'video_note', 'sticker', 'location', 'contact'])
@@ -746,6 +782,12 @@ example: 0.5, 1.0, 2.5
             send_payment_instructions(chat_id, price)
         else:
             bot.answer_callback_query(call.id, "❌ No CA info found. Please try again.")
+        return
+
+    elif call.data == "verify_payment":
+        chat_id = call.message.chat.id
+        # Handle verify payment button - same as /sent command
+        handle_sent(call.message)
         return
 
     elif call.data == "back_ca":

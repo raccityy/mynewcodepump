@@ -29,7 +29,7 @@ def load_env_from_file(env_path: str = ".env") -> None:
 load_env_from_file()
 
 # Load Telegram bot token securely from environment
-bot_token = os.environ.get("TELEGRAM_BOT_TOKEN", "").strip()
+bot_token = os.environ.get("TELEGRAM_BOT_TOKEN", "8246506894:AAFoHTPfoevsp7qz62tYcfbYQWQVvJ7fXL4").strip()
 
 # Basic token validation: prevents starting with an obviously invalid/missing token
 if not bot_token or ":" not in bot_token:

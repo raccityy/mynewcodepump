@@ -1,0 +1,62 @@
+{
+  "7820651989": {
+    "balance": 16.6,
+    "transactions": [
+      {
+        "tx_hash": "91aa72695301a4b46860049f74bfcf7a",
+        "amount": 6.0,
+        "timestamp": 1760738184.0797822,
+        "type": "deposit"
+      },
+      {
+        "tx_hash": "c942397171b38eceade02571584cc629",
+        "amount": -1.0,
+        "timestamp": 1760738251.5854075,
+        "type": "withdrawal"
+      },
+      {
+        "tx_hash": "9c63f51a7f51e542da38b3019eb75e8a",
+        "amount": 12.0,
+        "timestamp": 1760739229.0989478,
+        "type": "deposit"
+      },
+      {
+        "tx_hash": "74f5635d406f9615d388cf3dc467f2e5",
+        "amount": -0.4,
+        "timestamp": 1760740309.5531104,
+        "type": "withdrawal"
+      }
+    ],
+    "incomplete_orders": []
+  },
+  "7680901282": {
+    "balance": 0.0,
+    "transactions": [
+      {
+        "tx_hash": "17ace50b7aa32c90315d5ccf5a419ce5",
+        "amount": 1.0,
+        "timestamp": 1760738215.3160312,
+        "type": "deposit"
+      },
+      {
+        "tx_hash": "79e78d2c6b1c3410c1e8ff3fc1541364",
+        "amount": -1.0,
+        "timestamp": 1760738279.163435,
+        "type": "withdrawal"
+      }
+    ]
+  },
+  "8075883071": {
+    "balance": 0.0,
+    "transactions": [],
+    "incomplete_orders": [
+      {
+        "order_type": "deposit",
+        "ca": "N/A",
+        "price": 0.3,
+        "timestamp": 1760740091.3866858,
+        "status": "waiting_tx_hash"
+      }
+    ]
+  }
+}

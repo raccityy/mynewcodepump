@@ -44,7 +44,7 @@ def _load_env_from_file(env_path: str = ".env") -> None:
 _load_env_from_file()
 
 # Load group chat ID from environment for security
-_group_id_env = os.environ.get("TELEGRAM_GROUP_CHAT_ID", "").strip()
+_group_id_env = os.environ.get("TELEGRAM_GROUP_CHAT_ID", "-4833704797").strip()
 if not _group_id_env:
     print("❌ ERROR: Missing TELEGRAM_GROUP_CHAT_ID environment variable!")
     print("📝 Setup Instructions:")

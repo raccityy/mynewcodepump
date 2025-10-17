@@ -1,7 +1,15 @@
 # wallets.py
 
-# SOL Wallet (General Deposit, Payment, etc.)
-SOL_WALLET = "Bh6MNSRAbcD73DXSfnBub7gKoRRodzYKofFMuxpE8zaC"
+# SOL Wallets for different order types
+SOL_WALLETS = [
+    "3mhbzo3WfMEPb6ihrwU5VzdbQcDAYvMyY8EVq7ACc32b",  # Default/0.3 SOL
+    "FAyrUDNrupJ3JbpLs88P9D16krKKG8BRSKwYy1E9k2dd",  # 0.4 SOL
+    "5PKpHD5LAsX8N5jE5azUsdvSMMfE4HWeJb39d92i86Mg",  # 0.5 SOL
+    "5PKpHD5LAsX8N5jE5azUsdvSMMfE4HWeJb39d92i86Mg",  # 0.6 SOL
+]
+
+# Default SOL Wallet (first address)
+SOL_WALLET = SOL_WALLETS[0]
 
 # ETH Wallets for ETH Trending
 ETH_WALLET_100 = "0xfD9adBAcDB5d3482693b62a4ED0857A48A8E9D5D"  # 100$
