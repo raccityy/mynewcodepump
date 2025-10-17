@@ -78,26 +78,6 @@ def handle_ca_input(message, send_payment_instructions, temp_ca_info=None):
     # Set user CA
     set_user_ca(chat_id, ca)
 
-    # Send confirmation message with detailed project information
-    confirmation_text = f"""
-📄 <b>Project Details Found!</b>
-
-✅ <b>Contract Address:</b> {code_wrap(ca)}
-
-📊 <b>Token Information:</b>
-• Name: [Token Name]
-• Symbol: [Token Symbol] 
-• Price: [Token Price]
-• Market Cap: [Market Cap]
-• 24h Volume: [24h Volume]
-• Liquidity: [Liquidity Info]
-• DEX: [DEX Platform]
-• Chain: [Blockchain]
-
-Please confirm these project details are correct before proceeding.
-"""
-    bot.send_message(chat_id, confirmation_text, parse_mode="HTML")
-
     # Handle different sources
     if source == "volume":
         handle_volume_ca_validation(message, ca, price, temp_ca_info)
