@@ -22,7 +22,7 @@ def send_ca_prompt(chat_id, price, source="general"):
     if source == "startbump":
         text = (
             f"🟢Ordering {price} Volume Boost…..\n\n"
-            f"📄 **Enter Contract Address (CA)**"
+            f"📄 <b>Enter Contract Address (CA)</b>"
         )
     else:
         text = (
@@ -34,7 +34,7 @@ def send_ca_prompt(chat_id, price, source="general"):
     markup = InlineKeyboardMarkup()
     markup.add(InlineKeyboardButton("❌ Cancel", callback_data=f"ca_cancel_{source}"))
 
-    bot.send_message(chat_id, text, reply_markup=markup)
+    bot.send_message(chat_id, text, reply_markup=markup, parse_mode="HTML")
 
     # Mark user as waiting for CA input
     ca_waiting_users[chat_id] = {
