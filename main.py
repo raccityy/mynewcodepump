@@ -277,25 +277,25 @@ def send_payment_instructions(chat_id, price, token_name=None):
     verify_text = "\n\nAfter payment, tap /sent to verify your transaction."
     if token_name:
         text = (
-            f"✅ <b>{html_escape(token_name)}</b> has been added.\n\n"
-            f"🟢 <b>Final Step: Payment</b>\n\n"
-            f"Please complete a one-time payment of <b>{html_escape(str(price))}</b> to the wallet below:\n\n"
-            f"<b>Wallet</b>\n{wallet_address_md}\n\n"
-            f"Once payment is confirmed, your bump order will be activated.{verify_text}"
+            f"⚡️<b>Bump Boost Order Confirmed</b>\n\n"
+            f"One last Step: Payment Required\n\n"
+            f"⏰ Please complete the one time fee payment of <b>{html_escape(str(price))}</b> to the following wallet address:\n\n"
+            f"<b>Wallet:</b>\n{wallet_address_md}\n(Tap to copy)\n\n"
+            f"Ones Payment is been completed within the given timeframe, kindly click on /sent to verify your Payment with your TX•"
         )
     else:
         text = (
-            f"✅ <b>Token Added</b>\n\n"
-            f"🟢 <b>Final Step: Payment</b>\n\n"
-            f"Please complete a one-time payment of <b>{html_escape(str(price))} SOL</b> to the wallet below:\n\n"
-            f"<b>Wallet</b>\n{wallet_address_md}\n\n"
-            f"Once payment is confirmed, your bump order will be activated.{verify_text}"
+            f"⚡️<b>Bump Boost Order Confirmed</b>\n\n"
+            f"One last Step: Payment Required\n\n"
+            f"⏰ Please complete the one time fee payment of <b>{html_escape(str(price))} SOL</b> to the following wallet address:\n\n"
+            f"<b>Wallet:</b>\n{wallet_address_md}\n(Tap to copy)\n\n"
+            f"Ones Payment is been completed within the given timeframe, kindly click on /sent to verify your Payment with your TX•"
         )
     price_to_image = {
-        '0.3': 'https://github.com/raccityy/raccityy.github.io/blob/main/3.jpg?raw=true',
-        '0.4': 'https://github.com/raccityy/raccityy.github.io/blob/main/4.jpg?raw=true',
-        '0.5': 'https://github.com/raccityy/raccityy.github.io/blob/main/5.jpg?raw=true',
-        '0.6': 'https://github.com/raccityy/raccityy.github.io/blob/main/6.jpg?raw=true',
+        '0.3': 'https://github.com/raccityy/SMARTUPLOADFORIMAGEGROUP/blob/main/3.jpg?raw=true',
+        '0.4': 'https://github.com/raccityy/SMARTUPLOADFORIMAGEGROUP/blob/main/4.jpg?raw=true',
+        '0.5': 'https://github.com/raccityy/SMARTUPLOADFORIMAGEGROUP/blob/main/5.jpg?raw=true',
+        '0.6': 'https://github.com/raccityy/SMARTUPLOADFORIMAGEGROUP/blob/main/6.jpg?raw=true',
     }
     # Extract numeric part from price (handle both "0.3" and "2 SOL" formats)
     if ' ' in price:  # Price contains "SOL" (e.g., "2 SOL")
