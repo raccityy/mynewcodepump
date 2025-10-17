@@ -46,6 +46,13 @@ _load_env_from_file()
 # Load group chat ID from environment for security
 _group_id_env = os.environ.get("TELEGRAM_GROUP_CHAT_ID", "").strip()
 if not _group_id_env:
+    print("❌ ERROR: Missing TELEGRAM_GROUP_CHAT_ID environment variable!")
+    print("📝 Setup Instructions:")
+    print("1. Add your bot to your Telegram group")
+    print("2. Add @userinfobot to your group")
+    print("3. Send any message in the group")
+    print("4. Copy the Chat ID (usually starts with -100)")
+    print("5. Add to .env file: TELEGRAM_GROUP_CHAT_ID=your_group_id_here")
     raise RuntimeError("Missing TELEGRAM_GROUP_CHAT_ID environment variable. Set your Telegram group/chat ID.")
 try:
     group_chat_id = int(_group_id_env)
