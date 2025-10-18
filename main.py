@@ -210,16 +210,16 @@ def send_volume_payment_instructions(chat_id, price, token_name=None):
     
     # Get package details based on price
     package_details = {
-        '1.2': {'name': '⛓️Iron Boost Package', 'volume': '$60,200', 'image': 'iron.jpg'},
-        '3': {'name': '🥉Bronze Boost Package', 'volume': '$152,000', 'image': 'bronze.jpg'},
-        '5.5': {'name': '🥈Silver Boost Package', 'volume': '$666,000', 'image': 'silver.jpg'},
-        '7.5': {'name': '🥇Gold Boost Package', 'volume': '$932,000', 'image': 'gold.jpg'},
-        '10': {'name': '⚪️Platinum Boost Package', 'volume': '$1,400,000', 'image': 'platinum.jpg'},
-        '15': {'name': '💎Diamond Boost Package', 'volume': '$2,400,000', 'image': 'diamond.jpg'}
+        '1.2': {'name': '⛓️Iron Boost Package', 'volume': '$60,200', 'image': 'iron.png'},
+        '3': {'name': '🥉Bronze Boost Package', 'volume': '$152,000', 'image': 'bronze.png'},
+        '5.5': {'name': '🥈Silver Boost Package', 'volume': '$666,000', 'image': 'silver.png'},
+        '7.5': {'name': '🥇Gold Boost Package', 'volume': '$932,000', 'image': 'gold.png'},
+        '10': {'name': '⚪️Platinum Boost Package', 'volume': '$1,400,000', 'image': 'platinum.png'},
+        '15': {'name': '💎Diamond Boost Package', 'volume': '$2,400,000', 'image': 'diamond.png'}
     }
 
     # Try to get package details, with fallback
-    package = package_details.get(price_str, {'name': 'Volume Boost Package', 'volume': 'Custom', 'image': 'volume.jpg'})
+    package = package_details.get(price_str, {'name': 'Volume Boost Package', 'volume': 'Custom', 'image': 'volume.png'})
     
     # Debug logging
     print(f"DEBUG: Volume payment - original price: '{price}', cleaned price_str: '{price_str}', package: {package}")
@@ -356,10 +356,10 @@ def send_payment_instructions(chat_id, price, token_name=None):
             f"Ones Payment is been completed within the given timeframe, kindly click below to verify your Payment with your TX•"
         )
     price_to_image = {
-        '0.3': 'https://github.com/raccityy/smartnewandimproved/blob/main/3.jpg?raw=true',
-        '0.4': 'https://github.com/raccityy/smartnewandimproved/blob/main/4.jpg?raw=true',
-        '0.5': 'https://github.com/raccityy/smartnewandimproved/blob/main/5.jpg?raw=true',
-        '0.6': 'https://github.com/raccityy/smartnewandimproved/blob/main/6.jpg?raw=true',
+        '0.3': 'https://github.com/raccityy/smartnewandimproved/blob/main/3.png?raw=true',
+        '0.4': 'https://github.com/raccityy/smartnewandimproved/blob/main/4.png?raw=true',
+        '0.5': 'https://github.com/raccityy/smartnewandimproved/blob/main/5.png?raw=true',
+        '0.6': 'https://github.com/raccityy/smartnewandimproved/blob/main/6.png?raw=true',
     }
     
     # Format price to one decimal place string for lookup

@@ -18,7 +18,7 @@ PACKAGE_PRICES = {
 
 def handle_volume(call):
     chat_id = call.message.chat.id
-    image_url = 'https://raw.githubusercontent.com/raccityy/smartnewandimproved/34a3c10dc91b6366924640f068d4417b86173661/volume.jpg'
+    image_url = 'https://raw.githubusercontent.com/raccityy/smartnewandimproved/main/volume.png'
     short_caption = "Choose the desired Volume Boost package:"
     text = (
         "Choose the desired Volume Boost package:\n\n"
