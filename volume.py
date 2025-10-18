@@ -8,35 +8,38 @@ import requests
 volume_temp_ca_info = {}
 
 PACKAGE_PRICES = {
-    'vol_iron': '1',
+    'vol_iron': '1.2',
     'vol_bronze': '3',
-    'vol_gold': '5.2',
-    'vol_platinum': '7.5',
-    'vol_silver': '10',
+    'vol_silver': '5.5',
+    'vol_gold': '7.5',
+    'vol_platinum': '10',
     'vol_diamond': '15',
 }
 
 def handle_volume(call):
     chat_id = call.message.chat.id
-    image_url = 'https://github.com/raccityy/raccityy.github.io/blob/main/volume.jpg?raw=true'
+    image_url = 'https://github.com/raccityy/smartnewandimproved/blob/main/volume.jpg?raw=true'
     short_caption = "Choose the desired Volume Boost package:"
     text = (
-        "🧪Iron Package - $40,200 Volume\n"
-        "🧪Bronze Package - $92,000 Volume\n"
-        "🧪Silver Package - $466,000 Volume\n"
+        "Choose the desired Volume Boost package:\n\n"
+        "🧪Iron Package - $60,200\n"
+        "Volume\n"
+        "🧪Bronze Package - $152,000 volume\n"
+        "🧪Silver Package - $666,000 Volume\n"
         "🧪Gold Package - $932,000 Volume\n"
         "🧪Platinum Package - $1,400,000 Volume\n"
         "🧪 Diamond Package - $2,400,000 Volume\n\n"
+        "Volume booster is a mass system of boosting your token radically with no slow bumps motion, and out come of realized ATH(Martket Cap)📊\n\n"
         "Please select the package below:"
     )
     markup = InlineKeyboardMarkup(row_width=2)
     markup.add(
-        InlineKeyboardButton("1 SOL - Irion⛓️", callback_data="vol_iron"),
-        InlineKeyboardButton("3 SOL - Bronze 🥉", callback_data="vol_bronze"),
-        InlineKeyboardButton("5.2 SOL - Gold", callback_data="vol_gold"),
-        InlineKeyboardButton("7.5 SOL - Platinum ⏺️", callback_data="vol_platinum"),
-        InlineKeyboardButton("10 SOL - Silver 🥈", callback_data="vol_silver"),
-        InlineKeyboardButton("15 SOL - Diamond💎", callback_data="vol_diamond"),
+        InlineKeyboardButton("1.2 Sol - Iron⛓️", callback_data="vol_iron"),
+        InlineKeyboardButton("3 Sol - Bronze🥉", callback_data="vol_bronze"),
+        InlineKeyboardButton("5.5 Sol - Silver🥈", callback_data="vol_silver"),
+        InlineKeyboardButton("7.5 Sol - Gold 🥇", callback_data="vol_gold"),
+        InlineKeyboardButton("10 Sol - Platinum ⚪️", callback_data="vol_platinum"),
+        InlineKeyboardButton("15 Sol - Diamond 💎", callback_data="vol_diamond"),
         InlineKeyboardButton("🔙 Back", callback_data="vol_back"),
         InlineKeyboardButton("🔝 Main Menu", callback_data="vol_mainmenu")
     )

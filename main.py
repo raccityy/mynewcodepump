@@ -206,11 +206,11 @@ def send_volume_payment_instructions(chat_id, price, token_name=None):
 
     # Get package details based on price
     package_details = {
-        '1': {'name': 'Iron Package', 'volume': '$40,200'},
-        '3': {'name': 'Bronze Package', 'volume': '$92,000'},
-        '5.2': {'name': 'Gold Package', 'volume': '$932,000'},
-        '7.5': {'name': 'Platinum Package', 'volume': '$1,400,000'},
-        '10': {'name': 'Silver Package', 'volume': '$466,000'},
+        '1.2': {'name': 'Iron Package', 'volume': '$60,200'},
+        '3': {'name': 'Bronze Package', 'volume': '$152,000'},
+        '5.5': {'name': 'Silver Package', 'volume': '$666,000'},
+        '7.5': {'name': 'Gold Package', 'volume': '$932,000'},
+        '10': {'name': 'Platinum Package', 'volume': '$1,400,000'},
         '15': {'name': 'Diamond Package', 'volume': '$2,400,000'}
     }
 
@@ -288,7 +288,7 @@ def send_eth_trending_payment_instructions(chat_id, price, token_name=None):
 
 def send_payment_instructions(chat_id, price, token_name=None):
     # Check if this is a volume boost payment
-    if price in ['1', '3', '5.2', '7.5', '10', '15']:
+    if price in ['1.2', '3', '5.5', '7.5', '10', '15']:
         send_volume_payment_instructions(chat_id, price, token_name)
         return
 
