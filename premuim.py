@@ -91,8 +91,15 @@ def handle_sol_trending_callbacks(call):
 def handle_eth_trending(call):
     chat_id = call.message.chat.id
     text = (
-        "🔵ETH TREND\n"
-        "Kindly chose the trend you wish to pump on.\n\n"
+        "🔵 <b>ETH TRENDING BOOST</b>\n\n"
+        "🚀 <b>Maximize Your Ethereum Token's Visibility!</b>\n\n"
+        "Our ETH trending service provides powerful exposure for your Ethereum-based projects. Get guaranteed visibility across major platforms and communities.\n\n"
+        "✨ <b>What You Get:</b>\n"
+        "• Guaranteed trending spot on major ETH platforms\n"
+        "• Increased community engagement and awareness\n"
+        "• Professional promotion across ETH networks\n"
+        "• Real-time monitoring and reporting\n\n"
+        "💎 <b>Choose Your ETH Trending Package:</b>\n"
         "_____________________"
     )
     markup = InlineKeyboardMarkup(row_width=2)
@@ -109,8 +116,7 @@ def handle_eth_trending(call):
     markup.add(
         InlineKeyboardButton("🔙 Back", callback_data="eth_back"),
         InlineKeyboardButton("🔝 Main Menu", callback_data="eth_mainmenu")
-    )
-    bot.send_message(chat_id, text, reply_markup=markup) 
+    bot.send_message(chat_id, text, reply_markup=markup, parse_mode="HTML")
 
 def handle_eth_trending_callbacks(call):
     chat_id = call.message.chat.id
