@@ -13,10 +13,10 @@ def handle_premium(call):
         "➔ Please choose SOL Trending or Pump Fun Trending to start:"
     )
     markup = InlineKeyboardMarkup(row_width=2)
-    markup.add(InlineKeyboardButton("SOL TRENDING", callback_data="premium_sol"))
+    markup.add(InlineKeyboardButton("🟢SOL Trend", callback_data="premium_sol"))
     markup.add(
-        InlineKeyboardButton("ETH TRENDING", callback_data="premium_eth"),
-        InlineKeyboardButton("PUMPFUN TRENDING", callback_data="premium_pumpfun")
+        InlineKeyboardButton("🔵Eth Trend", callback_data="premium_eth"),
+        InlineKeyboardButton("💊Pumpfun Trend", callback_data="premium_pumpfun")
     )
     markup.add(
         InlineKeyboardButton("🔙 Back", callback_data="premium_back"),
