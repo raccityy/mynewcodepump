@@ -138,7 +138,7 @@ def handle_eth_trending_callbacks(call):
 
 def handle_pumpfun_trending(call):
     chat_id = call.message.chat.id
-    image_url = 'https://raw.githubusercontent.com/raccityy/raccityy.github.io/refs/heads/main/pumpfun.jpg'
+    image_url = 'https://github.com/raccityy/images-for-raw/blob/main/pump.jpg?raw=true'
     text = (
         "💊PUMP.FUN TRENDING💊\n\n"
         "💡THE BEST TRENDING IN THE BOT SECTION, DON'T MISS THE OPPORTUNITY TO GET 12 HOURS FREE SOLANA TRENDING ONCE YOU PURCHASE IT."
