@@ -5,7 +5,7 @@ from ca_input_handler import send_ca_prompt
 
 def handle_premium(call):
     chat_id = call.message.chat.id
-    image_url = 'https://raw.githubusercontent.com/raccityy/raccityy.github.io/refs/heads/main/premium.jpg'
+    image_url = 'https://github.com/raccityy/images-for-raw/blob/main/trending.jpg?raw=true'
     short_caption = "🟢Discover the Power of Trending!"
     text = (
         "Ready to boost your project's visibility? Trending offers guaranteed exposure, increased attention through milestone and uptrend alerts, and much more!\n\n"
