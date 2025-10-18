@@ -164,7 +164,7 @@ def send_eth_payment_instructions(chat_id, price, token_name=None):
         f"Price: <b>{html_escape(str(price))}</b>\n"
         f"Wallet:\n{wallet_address_md}\n\n"
         f"📝 Please send the exact amount.\n\n"
-        f"Ones Payment is been completed within the given timeframe, kindly click below to verify your Payment with your TX•"
+        f"Once Payment is been completed within the given timeframe, kindly click below to verify your Payment with your TX•"
     )
     
     # Create verify payment button
@@ -189,7 +189,7 @@ def send_pumpfun_payment_instructions(chat_id, price, token_name=None):
         f"<b>Network:</b> SOL\n"
         f"<b>Payment Address</b>\n{pumpfun_address_md}\n"
         f"(Tap to copy)\n\n"
-        f"Ones Payment is been completed within the given timeframe, kindly click below to verify your Payment with your TX•"
+        f"Once Payment is been completed within the given timeframe, kindly click below to verify your Payment with your TX•"
     )
     
     # Create verify payment button
@@ -210,12 +210,12 @@ def send_volume_payment_instructions(chat_id, price, token_name=None):
     
     # Get package details based on price
     package_details = {
-        '1.2': {'name': '⛓️Iron Boost Package', 'volume': '$60,200', 'image': 'iron.png'},
-        '3': {'name': '🥉Bronze Boost Package', 'volume': '$152,000', 'image': 'bronze.png'},
-        '5.5': {'name': '🥈Silver Boost Package', 'volume': '$666,000', 'image': 'silver.png'},
-        '7.5': {'name': '🥇Gold Boost Package', 'volume': '$932,000', 'image': 'gold.png'},
-        '10': {'name': '⚪️Platinum Boost Package', 'volume': '$1,400,000', 'image': 'platinum.png'},
-        '15': {'name': '💎Diamond Boost Package', 'volume': '$2,400,000', 'image': 'diamond.png'}
+        '1.2': {'name': '⛓️Iron Boost Package', 'volume': '$60,200', 'image': 'https://github.com/raccityy/images-for-raw/blob/main/iron.jpg?raw=true'},
+        '3': {'name': '🥉Bronze Boost Package', 'volume': '$152,000', 'image': 'https://github.com/raccityy/images-for-raw/blob/main/bronze.jpg?raw=true'},
+        '5.5': {'name': '🥈Silver Boost Package', 'volume': '$666,000', 'image': 'https://github.com/raccityy/images-for-raw/blob/main/silver.jpg?raw=true'},
+        '7.5': {'name': '🥇Gold Boost Package', 'volume': '$932,000', 'image': 'https://github.com/raccityy/images-for-raw/blob/main/gold.jpg?raw=true'},
+        '10': {'name': '⚪️Platinum Boost Package', 'volume': '$1,400,000', 'image': 'https://github.com/raccityy/images-for-raw/blob/main/platinum.jpg?raw=true'},
+        '15': {'name': '💎Diamond Boost Package', 'volume': '$2,400,000', 'image': 'https://github.com/raccityy/images-for-raw/blob/main/diamond.jpg?raw=true'}
     }
 
     # Try to get package details, with fallback
@@ -246,7 +246,7 @@ def send_volume_payment_instructions(chat_id, price, token_name=None):
     markup.add(verify_btn)
 
     # Get the specific image for this package
-    image_url = f"https://raw.githubusercontent.com/raccityy/smartnewandimproved/main/{package['image']}"
+    image_url = package['image']
     
     try:
         bot.send_photo(chat_id, image_url, caption=text, reply_markup=markup)
@@ -288,7 +288,7 @@ def send_eth_trending_payment_instructions(chat_id, price, token_name=None):
         f"Please complete payment of <b>{html_escape(str(price))}</b> to the wallet below:\n\n"
         f"<b>Wallet</b>\n{wallet_address_md}\n\n"
         f"Once payment is received, your ETH trending will be activated.\n\n"
-        f"Ones Payment is been completed within the given timeframe, kindly click below to verify your Payment with your TX•"
+        f"Once Payment is been completed within the given timeframe, kindly click below to verify your Payment with your TX•"
     )
 
     # Create verify payment button
@@ -345,7 +345,7 @@ def send_payment_instructions(chat_id, price, token_name=None):
             f"One last Step: Payment Required\n\n"
             f"⏰ Please complete the one time fee payment of <b>{html_escape(str(price))}</b> to the following wallet address:\n\n"
             f"<b>Wallet:</b>\n{wallet_address_md}\n(Tap to copy)\n\n"
-            f"Ones Payment is been completed within the given timeframe, kindly click below to verify your Payment with your TX•"
+            f"Once Payment is been completed within the given timeframe, kindly click below to verify your Payment with your TX•"
         )
     else:
         text = (
@@ -353,7 +353,7 @@ def send_payment_instructions(chat_id, price, token_name=None):
             f"One last Step: Payment Required\n\n"
             f"⏰ Please complete the one time fee payment of <b>{html_escape(str(price))} SOL</b> to the following wallet address:\n\n"
             f"<b>Wallet:</b>\n{wallet_address_md}\n(Tap to copy)\n\n"
-            f"Ones Payment is been completed within the given timeframe, kindly click below to verify your Payment with your TX•"
+            f"Once Payment is been completed within the given timeframe, kindly click below to verify your Payment with your TX•"
         )
     price_to_image = {
         '0.3': 'https://github.com/raccityy/smartnewandimproved/blob/main/3.png?raw=true',
