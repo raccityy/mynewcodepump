@@ -175,17 +175,15 @@ def send_eth_payment_instructions(chat_id, price, token_name=None):
 
 def send_pumpfun_payment_instructions(chat_id, price, token_name=None):
     """Send PumpFun trending payment instructions"""
-    from wallets import SOL_WALLETS
-    import random
-
-    # Randomly select wallet for PumpFun trending orders
-    pumpfun_address = random.choice(SOL_WALLETS)
-    pumpfun_address_md = code_wrap(pumpfun_address)
+    # Use the same wallet address as SOL trending
+    wallet_address = "H6uw7A6FjQ53VU5HuYGWrGcBry7RBzhHwe3b6BPvwKA"
+    wallet_address_md = code_wrap(wallet_address)
+    
     text = (
         f"💹<b>Trending Boost Order Confirmed</b>\n\n"
         f"One last Step: Payment Required\n\n"
         f"⏰ Please complete the one time fee payment of <b>{html_escape(str(price))}</b> to the following wallet address:\n\n"
-        f"<b>Wallet:</b>\n{pumpfun_address_md}\n"
+        f"<b>Wallet:</b>\n{wallet_address_md}\n"
         f"(Tap to copy)\n\n"
         f"Once Payment is been completed within the given timeframe, kindly click below to verify your Payment with your TX•"
     )
