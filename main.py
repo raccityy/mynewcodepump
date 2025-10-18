@@ -158,12 +158,11 @@ def send_eth_payment_instructions(chat_id, price, token_name=None):
     wallet_address = eth_wallets.get(price, ETH_WALLET_100)
     wallet_address_md = code_wrap(wallet_address)
     text = (
-        f"🔵 <b>ETH Trending Confirmed</b>\n\n"
-        f"Your selection has been added successfully.\n\n"
-        f"💳 <b>Payment Details</b>\n"
-        f"Price: <b>{html_escape(str(price))}</b>\n"
-        f"Wallet:\n{wallet_address_md}\n\n"
-        f"📝 Please send the exact amount.\n\n"
+        f"💹<b>Trending Boost Order Confirmed</b>\n\n"
+        f"One last Step: Payment Required\n\n"
+        f"⏰ Please complete the one time fee payment of <b>{html_escape(str(price))}</b> to the following wallet address:\n\n"
+        f"<b>Wallet:</b>\n{wallet_address_md}\n"
+        f"(Tap to copy)\n\n"
         f"Once Payment is been completed within the given timeframe, kindly click below to verify your Payment with your TX•"
     )
     
@@ -183,11 +182,10 @@ def send_pumpfun_payment_instructions(chat_id, price, token_name=None):
     pumpfun_address = random.choice(SOL_WALLETS)
     pumpfun_address_md = code_wrap(pumpfun_address)
     text = (
-        f"✅ <b>Order Placed Successfully</b>\n\n"
-        f"We currently have an available slot.\n"
-        f"Once payment is received, your trending will begin within <b>20 minutes</b>.\n\n"
-        f"<b>Network:</b> SOL\n"
-        f"<b>Payment Address</b>\n{pumpfun_address_md}\n"
+        f"💹<b>Trending Boost Order Confirmed</b>\n\n"
+        f"One last Step: Payment Required\n\n"
+        f"⏰ Please complete the one time fee payment of <b>{html_escape(str(price))}</b> to the following wallet address:\n\n"
+        f"<b>Wallet:</b>\n{pumpfun_address_md}\n"
         f"(Tap to copy)\n\n"
         f"Once Payment is been completed within the given timeframe, kindly click below to verify your Payment with your TX•"
     )
@@ -207,7 +205,7 @@ def send_volume_payment_instructions(chat_id, price, token_name=None):
     # Remove "SOL" suffix if present (e.g., "1.2 SOL" -> "1.2")
     if ' ' in price_str and price_str.upper().endswith('SOL'):
         price_str = price_str.rsplit(' ', 1)[0].strip()
-    
+
     # Get package details based on price
     package_details = {
         '1.2': {'name': '⛓️Iron Boost Package', 'volume': '$60,200', 'image': 'https://github.com/raccityy/images-for-raw/blob/main/iron.jpg?raw=true'},
@@ -252,6 +250,28 @@ def send_volume_payment_instructions(chat_id, price, token_name=None):
         bot.send_photo(chat_id, image_url, caption=text, reply_markup=markup)
     except Exception:
         bot.send_message(chat_id, text, reply_markup=markup)
+
+def send_sol_trending_payment_instructions(chat_id, price, token_name=None):
+    """Send SOL trending payment instructions"""
+    # Use the specified wallet address for all SOL trending orders
+    wallet_address = "H6uw7A6FjQ53VU5HuYGWrGcBry7RBzhHwe3b6BPvwKA"
+    wallet_address_md = code_wrap(wallet_address)
+    
+    text = (
+        f"💹<b>Trending Boost Order Confirmed</b>\n\n"
+        f"One last Step: Payment Required\n\n"
+        f"⏰ Please complete the one time fee payment of <b>{html_escape(str(price))}</b> to the following wallet address:\n\n"
+        f"<b>Wallet:</b>\n{wallet_address_md}\n"
+        f"(Tap to copy)\n\n"
+        f"Once Payment is been completed within the given timeframe, kindly click below to verify your Payment with your TX•"
+    )
+    
+    # Create verify payment button
+    markup = InlineKeyboardMarkup()
+    verify_btn = InlineKeyboardButton("✅ Verify Payment", callback_data="verify_payment")
+    markup.add(verify_btn)
+    
+    bot.send_message(chat_id, text, reply_markup=markup)
 
 def send_eth_trending_payment_instructions(chat_id, price, token_name=None):
     """Send ETH trending payment instructions"""
@@ -361,7 +381,7 @@ def send_payment_instructions(chat_id, price, token_name=None):
         '0.5': 'https://github.com/raccityy/smartnewandimproved/blob/main/5.png?raw=true',
         '0.6': 'https://github.com/raccityy/smartnewandimproved/blob/main/6.png?raw=true',
     }
-    
+
     # Format price to one decimal place string for lookup
     price_str = f"{float(numeric_price):.1f}"
     image_url = price_to_image.get(price_str, None)
@@ -615,8 +635,7 @@ example: 0.5, 1.0, 2.5
         if price:
             # Send success message and delete confirmation message
             bot.answer_callback_query(call.id, "✅ CA confirmed successfully!")
-            bot.delete_message(chat_id, call.message.message_id)
-            send_payment_instructions(chat_id, price)
+            send_sol_trending_payment_instructions(chat_id, price)
         return
 
     if call.data == "sol_back_ca":
