@@ -145,18 +145,11 @@ def handle_tx_callback(call):
             bot.answer_callback_query(call.id, "❌ No active transaction is waiting. Please start a new order.")
 
 def send_eth_payment_instructions(chat_id, price, token_name=None):
-    """Send ETH trending payment instructions with multiple wallet options"""
-    verify_text = "\n\nAfter payment, tap /sent to verify your transaction."
-
-    # Define wallet addresses for different price tiers
-    eth_wallets = {
-        "100$": ETH_WALLET_100,
-        "200$": ETH_WALLET_200,
-        "300$": ETH_WALLET_300
-    }
-
-    wallet_address = eth_wallets.get(price, ETH_WALLET_100)
+    """Send ETH trending payment instructions"""
+    # Use the single ETH wallet address for all ETH trending orders
+    wallet_address = "0xD164E487F5BC0FE09E675763e5bf42A5fb3d865b"
     wallet_address_md = code_wrap(wallet_address)
+    
     text = (
         f"💹<b>Trending Boost Order Confirmed</b>\n\n"
         f"One last Step: Payment Required\n\n"
@@ -273,47 +266,24 @@ def send_sol_trending_payment_instructions(chat_id, price, token_name=None):
 
 def send_eth_trending_payment_instructions(chat_id, price, token_name=None):
     """Send ETH trending payment instructions"""
-    verify_text = "\n\nAfter payment, tap /sent to verify your transaction."
-
-    # Get package details based on price
-    package_details = {
-        '100$': {'name': 'ETH Trending Basic', 'duration': '24 hours'},
-        '200$': {'name': 'ETH Trending Standard', 'duration': '48 hours'},
-        '300$': {'name': 'ETH Trending Premium', 'duration': '72 hours'}
-    }
-
-    package = package_details.get(price, {'name': 'ETH Trending Package', 'duration': 'Custom'})
-
-    # Define wallet addresses for different price tiers
-    eth_wallets = {
-        "100$": ETH_WALLET_100,
-        "200$": ETH_WALLET_200,
-        "300$": ETH_WALLET_300
-    }
-
-    # Get the appropriate wallet address for the price
-    wallet_address = eth_wallets.get(price, ETH_WALLET_100)
+    # Use the single ETH wallet address for all ETH trending orders
+    wallet_address = "0xD164E487F5BC0FE09E675763e5bf42A5fb3d865b"
     wallet_address_md = code_wrap(wallet_address)
-
+    
     text = (
-        f"🔵 <b>ETH Trending Confirmed</b>\n\n"
-        f"✅ <b>{html_escape(package['name'])}</b> has been added.\n\n"
-        f"📊 <b>Package Details</b>\n"
-        f"• Package: {html_escape(package['name'])}\n"
-        f"• Duration: {html_escape(package['duration'])}\n"
-        f"• Price: <b>{html_escape(str(price))}</b>\n\n"
-        f"🟢 <b>Final Step: Payment</b>\n\n"
-        f"Please complete payment of <b>{html_escape(str(price))}</b> to the wallet below:\n\n"
-        f"<b>Wallet</b>\n{wallet_address_md}\n\n"
-        f"Once payment is received, your ETH trending will be activated.\n\n"
+        f"💹<b>Trending Boost Order Confirmed</b>\n\n"
+        f"One last Step: Payment Required\n\n"
+        f"⏰ Please complete the one time fee payment of <b>{html_escape(str(price))}</b> to the following wallet address:\n\n"
+        f"<b>Wallet:</b>\n{wallet_address_md}\n"
+        f"(Tap to copy)\n\n"
         f"Once Payment is been completed within the given timeframe, kindly click below to verify your Payment with your TX•"
     )
-
+    
     # Create verify payment button
     markup = InlineKeyboardMarkup()
     verify_btn = InlineKeyboardButton("✅ Verify Payment", callback_data="verify_payment")
     markup.add(verify_btn)
-
+    
     bot.send_message(chat_id, text, reply_markup=markup)
 
 def send_payment_instructions(chat_id, price, token_name=None):
