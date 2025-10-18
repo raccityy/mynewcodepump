@@ -1,6 +1,6 @@
 {
   "7820651989": {
-    "balance": 16.6,
+    "balance": 18.8,
     "transactions": [
       {
         "tx_hash": "91aa72695301a4b46860049f74bfcf7a",
@@ -25,12 +25,24 @@
         "amount": -0.4,
         "timestamp": 1760740309.5531104,
         "type": "withdrawal"
+      },
+      {
+        "tx_hash": "366d70043a5143a1bb3c3a201af5024c",
+        "amount": 2.0,
+        "timestamp": 1760800939.573885,
+        "type": "deposit"
+      },
+      {
+        "tx_hash": "532f47e0350dcaf87f7d2612a8176275",
+        "amount": 0.2,
+        "timestamp": 1760801082.087581,
+        "type": "deposit"
       }
     ],
     "incomplete_orders": []
   },
   "7680901282": {
-    "balance": 0.0,
+    "balance": 30.0,
     "transactions": [
       {
         "tx_hash": "17ace50b7aa32c90315d5ccf5a419ce5",
@@ -42,6 +54,18 @@
         "tx_hash": "79e78d2c6b1c3410c1e8ff3fc1541364",
         "amount": -1.0,
         "timestamp": 1760738279.163435,
+        "type": "withdrawal"
+      },
+      {
+        "tx_hash": "1763d57feb329321c14a6e13ab92e5d5",
+        "amount": 50.0,
+        "timestamp": 1760800379.8562465,
+        "type": "deposit"
+      },
+      {
+        "tx_hash": "8ba92ac0adb8e91aca990949cbe2c506",
+        "amount": -20.0,
+        "timestamp": 1760800414.2562525,
         "type": "withdrawal"
       }
     ]

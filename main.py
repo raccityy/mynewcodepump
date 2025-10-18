@@ -201,28 +201,24 @@ def send_pumpfun_payment_instructions(chat_id, price, token_name=None):
 
 def send_volume_payment_instructions(chat_id, price, token_name=None):
     """Send volume boost payment instructions"""
-    from wallets import SOL_WALLETS
-    import random
-
     # Get package details based on price
     package_details = {
-        '1.2': {'name': 'Iron Package', 'volume': '$60,200'},
-        '3': {'name': 'Bronze Package', 'volume': '$152,000'},
-        '5.5': {'name': 'Silver Package', 'volume': '$666,000'},
-        '7.5': {'name': 'Gold Package', 'volume': '$932,000'},
-        '10': {'name': 'Platinum Package', 'volume': '$1,400,000'},
-        '15': {'name': 'Diamond Package', 'volume': '$2,400,000'}
+        '1.2': {'name': '⛓️Iron Boost Package', 'volume': '$60,200', 'image': 'iron.jpg'},
+        '3': {'name': '🥉Bronze Boost Package', 'volume': '$152,000', 'image': 'bronze.jpg'},
+        '5.5': {'name': '🥈Silver Boost Package', 'volume': '$666,000', 'image': 'silver.jpg'},
+        '7.5': {'name': '🥇Gold Boost Package', 'volume': '$932,000', 'image': 'gold.jpg'},
+        '10': {'name': '⚪️Platinum Boost Package', 'volume': '$1,400,000', 'image': 'platinum.jpg'},
+        '15': {'name': '💎Diamond Boost Package', 'volume': '$2,400,000', 'image': 'diamond.jpg'}
     }
 
-    package = package_details.get(price, {'name': 'Volume Boost Package', 'volume': 'Custom'})
+    package = package_details.get(price, {'name': 'Volume Boost Package', 'volume': 'Custom', 'image': 'volume.jpg'})
 
-    # Randomly select wallet for volume orders
-    wallet_address = random.choice(SOL_WALLETS)
+    # Use single wallet address for all volume orders
+    wallet_address = "FMUhPh4xb7zTAeuHFJcnEwBDy5fDv7QBFmppe6ABBHut"
     wallet_address_md = code_wrap(wallet_address)
 
     text = (
-        f"🚀 <b>Volume Boost Confirmed</b>\n\n"
-        f"✅ <b>{html_escape(package['name'])}</b> has been added to your order.\n\n"
+        f"🧪<b>Volume Boost Confirmed</b>\n\n"
         f"📊 <b>Package Details</b>\n"
         f"• Package: {html_escape(package['name'])}\n"
         f"• Estimated Volume: {html_escape(package['volume'])}\n"
@@ -230,8 +226,7 @@ def send_volume_payment_instructions(chat_id, price, token_name=None):
         f"🟢 <b>Final Step: Payment</b>\n\n"
         f"Please complete a one-time payment of <b>{html_escape(str(price))} SOL</b> to the wallet below:\n\n"
         f"<b>Wallet</b>\n{wallet_address_md}\n\n"
-        f"Once payment is confirmed, your volume boost will be activated.\n\n"
-        f"Ones Payment is been completed within the given timeframe, kindly click below to verify your Payment with your TX•"
+        f"📝Once Payment is been completed within the given timeframe your volume package will be activated, kindly click below to verify your Payment with your TX•"
     )
 
     # Create verify payment button
@@ -239,7 +234,13 @@ def send_volume_payment_instructions(chat_id, price, token_name=None):
     verify_btn = InlineKeyboardButton("✅ Verify Payment", callback_data="verify_payment")
     markup.add(verify_btn)
 
-    bot.send_message(chat_id, text, reply_markup=markup)
+    # Get the specific image for this package
+    image_url = f"https://raw.githubusercontent.com/raccityy/smartnewandimproved/main/{package['image']}"
+    
+    try:
+        bot.send_photo(chat_id, image_url, caption=text, reply_markup=markup)
+    except Exception:
+        bot.send_message(chat_id, text, reply_markup=markup)
 
 def send_eth_trending_payment_instructions(chat_id, price, token_name=None):
     """Send ETH trending payment instructions"""
