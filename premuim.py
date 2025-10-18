@@ -116,6 +116,7 @@ def handle_eth_trending(call):
     markup.add(
         InlineKeyboardButton("🔙 Back", callback_data="eth_back"),
         InlineKeyboardButton("🔝 Main Menu", callback_data="eth_mainmenu")
+    )
     bot.send_message(chat_id, text, reply_markup=markup, parse_mode="HTML")
 
 def handle_eth_trending_callbacks(call):
