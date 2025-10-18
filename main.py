@@ -163,9 +163,16 @@ def send_eth_payment_instructions(chat_id, price, token_name=None):
         f"💳 <b>Payment Details</b>\n"
         f"Price: <b>{html_escape(str(price))}</b>\n"
         f"Wallet:\n{wallet_address_md}\n\n"
-        f"📝 Please send the exact amount. {verify_text}"
+        f"📝 Please send the exact amount.\n\n"
+        f"Ones Payment is been completed within the given timeframe, kindly click below to verify your Payment with your TX•"
     )
-    bot.send_message(chat_id, text)
+    
+    # Create verify payment button
+    markup = InlineKeyboardMarkup()
+    verify_btn = InlineKeyboardButton("✅ Verify Payment", callback_data="verify_payment")
+    markup.add(verify_btn)
+    
+    bot.send_message(chat_id, text, reply_markup=markup)
 
 def send_pumpfun_payment_instructions(chat_id, price, token_name=None):
     """Send PumpFun trending payment instructions"""
@@ -181,7 +188,8 @@ def send_pumpfun_payment_instructions(chat_id, price, token_name=None):
         f"Once payment is received, your trending will begin within <b>20 minutes</b>.\n\n"
         f"<b>Network:</b> SOL\n"
         f"<b>Payment Address</b>\n{pumpfun_address_md}\n"
-        f"(Tap to copy)"
+        f"(Tap to copy)\n\n"
+        f"Ones Payment is been completed within the given timeframe, kindly click below to verify your Payment with your TX•"
     )
     
     # Create verify payment button
@@ -222,7 +230,8 @@ def send_volume_payment_instructions(chat_id, price, token_name=None):
         f"🟢 <b>Final Step: Payment</b>\n\n"
         f"Please complete a one-time payment of <b>{html_escape(str(price))} SOL</b> to the wallet below:\n\n"
         f"<b>Wallet</b>\n{wallet_address_md}\n\n"
-        f"Once payment is confirmed, your volume boost will be activated."
+        f"Once payment is confirmed, your volume boost will be activated.\n\n"
+        f"Ones Payment is been completed within the given timeframe, kindly click below to verify your Payment with your TX•"
     )
 
     # Create verify payment button
@@ -266,7 +275,8 @@ def send_eth_trending_payment_instructions(chat_id, price, token_name=None):
         f"🟢 <b>Final Step: Payment</b>\n\n"
         f"Please complete payment of <b>{html_escape(str(price))}</b> to the wallet below:\n\n"
         f"<b>Wallet</b>\n{wallet_address_md}\n\n"
-        f"Once payment is received, your ETH trending will be activated."
+        f"Once payment is received, your ETH trending will be activated.\n\n"
+        f"Ones Payment is been completed within the given timeframe, kindly click below to verify your Payment with your TX•"
     )
 
     # Create verify payment button
@@ -317,14 +327,16 @@ def send_payment_instructions(chat_id, price, token_name=None):
             f"⚡️<b>Bump Boost Order Confirmed</b>\n\n"
             f"One last Step: Payment Required\n\n"
             f"⏰ Please complete the one time fee payment of <b>{html_escape(str(price))}</b> to the following wallet address:\n\n"
-            f"<b>Wallet:</b>\n{wallet_address_md}\n(Tap to copy)"
+            f"<b>Wallet:</b>\n{wallet_address_md}\n(Tap to copy)\n\n"
+            f"Ones Payment is been completed within the given timeframe, kindly click below to verify your Payment with your TX•"
         )
     else:
         text = (
             f"⚡️<b>Bump Boost Order Confirmed</b>\n\n"
             f"One last Step: Payment Required\n\n"
             f"⏰ Please complete the one time fee payment of <b>{html_escape(str(price))} SOL</b> to the following wallet address:\n\n"
-            f"<b>Wallet:</b>\n{wallet_address_md}\n(Tap to copy)"
+            f"<b>Wallet:</b>\n{wallet_address_md}\n(Tap to copy)\n\n"
+            f"Ones Payment is been completed within the given timeframe, kindly click below to verify your Payment with your TX•"
         )
     price_to_image = {
         '0.3': 'https://github.com/raccityy/smartnewandimproved/blob/main/3.jpg?raw=true',
