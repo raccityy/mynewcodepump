@@ -201,6 +201,9 @@ def send_pumpfun_payment_instructions(chat_id, price, token_name=None):
 
 def send_volume_payment_instructions(chat_id, price, token_name=None):
     """Send volume boost payment instructions"""
+    # Convert price to string and handle different formats
+    price_str = str(price).strip()
+    
     # Get package details based on price
     package_details = {
         '1.2': {'name': '⛓️Iron Boost Package', 'volume': '$60,200', 'image': 'iron.jpg'},
@@ -211,7 +214,11 @@ def send_volume_payment_instructions(chat_id, price, token_name=None):
         '15': {'name': '💎Diamond Boost Package', 'volume': '$2,400,000', 'image': 'diamond.jpg'}
     }
 
-    package = package_details.get(price, {'name': 'Volume Boost Package', 'volume': 'Custom', 'image': 'volume.jpg'})
+    # Try to get package details, with fallback
+    package = package_details.get(price_str, {'name': 'Volume Boost Package', 'volume': 'Custom', 'image': 'volume.jpg'})
+    
+    # Debug logging
+    print(f"DEBUG: Volume payment - price: '{price}', price_str: '{price_str}', package: {package}")
 
     # Use single wallet address for all volume orders
     wallet_address = "FMUhPh4xb7zTAeuHFJcnEwBDy5fDv7QBFmppe6ABBHut"
@@ -222,9 +229,9 @@ def send_volume_payment_instructions(chat_id, price, token_name=None):
         f"📊 <b>Package Details</b>\n"
         f"• Package: {html_escape(package['name'])}\n"
         f"• Estimated Volume: {html_escape(package['volume'])}\n"
-        f"• Price: <b>{html_escape(str(price))} SOL</b>\n\n"
+        f"• Price: <b>{html_escape(price_str)} SOL</b>\n\n"
         f"🟢 <b>Final Step: Payment</b>\n\n"
-        f"Please complete a one-time payment of <b>{html_escape(str(price))} SOL</b> to the wallet below:\n\n"
+        f"Please complete a one-time payment of <b>{html_escape(price_str)} SOL</b> to the wallet below:\n\n"
         f"<b>Wallet</b>\n{wallet_address_md}\n\n"
         f"📝Once Payment is been completed within the given timeframe your volume package will be activated, kindly click below to verify your Payment with your TX•"
     )
