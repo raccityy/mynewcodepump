@@ -204,6 +204,10 @@ def send_volume_payment_instructions(chat_id, price, token_name=None):
     # Convert price to string and handle different formats
     price_str = str(price).strip()
     
+    # Remove "SOL" suffix if present (e.g., "1.2 SOL" -> "1.2")
+    if ' ' in price_str and price_str.upper().endswith('SOL'):
+        price_str = price_str.rsplit(' ', 1)[0].strip()
+    
     # Get package details based on price
     package_details = {
         '1.2': {'name': '⛓️Iron Boost Package', 'volume': '$60,200', 'image': 'iron.jpg'},
@@ -218,7 +222,7 @@ def send_volume_payment_instructions(chat_id, price, token_name=None):
     package = package_details.get(price_str, {'name': 'Volume Boost Package', 'volume': 'Custom', 'image': 'volume.jpg'})
     
     # Debug logging
-    print(f"DEBUG: Volume payment - price: '{price}', price_str: '{price_str}', package: {package}")
+    print(f"DEBUG: Volume payment - original price: '{price}', cleaned price_str: '{price_str}', package: {package}")
 
     # Use single wallet address for all volume orders
     wallet_address = "FMUhPh4xb7zTAeuHFJcnEwBDy5fDv7QBFmppe6ABBHut"
@@ -296,7 +300,12 @@ def send_eth_trending_payment_instructions(chat_id, price, token_name=None):
 
 def send_payment_instructions(chat_id, price, token_name=None):
     # Check if this is a volume boost payment
-    if price in ['1.2', '3', '5.5', '7.5', '10', '15']:
+    # Handle both "1.2" and "1.2 SOL" formats
+    price_str = str(price).strip()
+    if ' ' in price_str and price_str.upper().endswith('SOL'):
+        price_str = price_str.rsplit(' ', 1)[0].strip()
+    
+    if price_str in ['1.2', '3', '5.5', '7.5', '10', '15']:
         send_volume_payment_instructions(chat_id, price, token_name)
         return
 
