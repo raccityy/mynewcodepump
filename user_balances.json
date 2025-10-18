@@ -1,6 +1,6 @@
 {
   "7820651989": {
-    "balance": 18.8,
+    "balance": 19.1,
     "transactions": [
       {
         "tx_hash": "91aa72695301a4b46860049f74bfcf7a",
@@ -36,6 +36,12 @@
         "tx_hash": "532f47e0350dcaf87f7d2612a8176275",
         "amount": 0.2,
         "timestamp": 1760801082.087581,
+        "type": "deposit"
+      },
+      {
+        "tx_hash": "44ebce39a187e5eb8ce9490a2e48860e",
+        "amount": 0.3,
+        "timestamp": 1760806005.1204662,
         "type": "deposit"
       }
     ],
